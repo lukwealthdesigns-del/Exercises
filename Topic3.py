@@ -1,4 +1,3 @@
-# Imports
 from langgraph.graph import START, END, StateGraph, MessagesState
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.prebuilt import ToolNode
@@ -11,27 +10,18 @@ from dotenv import load_dotenv
 from typing import Literal
 import os
 
-print("✅ All imports successful")
-
-# Load API key
 load_dotenv()
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 if not openai_api_key:
-    raise ValueError("OPENAI_API_KEY not found! Please set it in your .env file.")
+    raise ValueError("OPENAI_API_KEY not found!")
 
-print("✅ API key loaded")
-
-# Initialize LLM
 llm = ChatOpenAI(
     model="gpt-4o-mini",
     temperature=0.5,
     api_key=openai_api_key
 )
 
-print(f"✅ LLM initialized: {llm.model_name}")
-
-# Section 3: Create Sample Python Programming Documents
 from langchain_core.documents import Document
 
 python_docs = [
@@ -52,7 +42,7 @@ Information can be passed into functions as arguments. Arguments are specified a
 def greet(name):
     print(f"Hello, {name}!")
 
-greet("Lukman")  # Output: Hello, Lukman!
+greet("Lukman")
 
 Return Values:
 To let a function return a value, use the return statement.
@@ -60,7 +50,7 @@ To let a function return a value, use the return statement.
 def add(a, b):
     return a + b
 
-result = add(5, 3)  # result is 8
+result = add(5, 3)
 
 Default Parameters:
 You can set default values for parameters.
@@ -68,13 +58,13 @@ You can set default values for parameters.
 def greet(name="World"):
     print(f"Hello, {name}!")
 
-greet()  # Output: Hello, World!
+greet()
 
 Lambda Functions:
 A lambda function is a small anonymous function.
 
 multiply = lambda x, y: x * y
-print(multiply(5, 3))  # Output: 15""",
+print(multiply(5, 3))""",
         metadata={"topic": "functions", "difficulty": "beginner", "page": 1}
     ),
     Document(
@@ -92,7 +82,7 @@ class Person:
 
 Creating an Object:
 person1 = Person("Lukman", 30)
-person1.greet()  # Output: Hello, my name is Lukman and I am 30 years old.
+person1.greet()
 
 Inheritance:
 Inheritance allows us to define a class that inherits all the methods and properties from another class.
@@ -106,22 +96,8 @@ class Student(Person):
         print(f"{self.name} is studying.")
 
 student1 = Student("Bayo", 20, "S12345")
-student1.greet()  # Output: Hello, my name is Bayo and I am 20 years old.
-student1.study()  # Output: Bayo is studying.
-
-Class Variables vs Instance Variables:
-Class variables are shared across all instances, while instance variables are unique to each instance.
-
-class Car:
-    wheels = 4  # Class variable
-    
-    def __init__(self, brand):
-        self.brand = brand  # Instance variable
-
-car1 = Car("Toyota")
-car2 = Car("Honda")
-print(Car.wheels)  # Output: 4 (shared)
-print(car1.brand)  # Output: Toyota (unique)""",
+student1.greet()
+student1.study()""",
         metadata={"topic": "OOP", "difficulty": "intermediate", "page": 2}
     ),
     Document(
@@ -132,36 +108,18 @@ Creating a List:
 fruits = ["apple", "banana", "cherry"]
 numbers = [1, 2, 3, 4, 5]
 
-Accessing Elements:
-print(fruits[0])  # Output: apple (first element)
-print(fruits[-1]) # Output: cherry (last element)
-
-List Methods:
-fruits.append("orange")  # Add element
-fruits.remove("banana")  # Remove element
-fruits.sort()  # Sort the list
-length = len(fruits)  # Get length
-
 List Comprehensions:
 List comprehension offers a shorter syntax when you want to create a new list based on the values of an existing list.
 
 Squares of numbers 1-5:
 squares = [x**2 for x in range(1, 6)]
-# Result: [1, 4, 9, 16, 25]
 
 Even numbers from 1-10:
 evens = [x for x in range(1, 11) if x % 2 == 0]
-# Result: [2, 4, 6, 8, 10]
 
 Nested List Comprehensions:
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-flattened = [num for row in matrix for num in row]
-# Result: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-Conditional Expressions in List Comprehensions:
-numbers = [1, 2, 3, 4, 5]
-result = ["even" if x % 2 == 0 else "odd" for x in numbers]
-# Result: ["odd", "even", "odd", "even", "odd"]""",
+flattened = [num for row in matrix for num in row]""",
         metadata={"topic": "data_structures", "difficulty": "beginner", "page": 3}
     ),
     Document(
@@ -180,31 +138,6 @@ try:
     data = file.read()
 except FileNotFoundError:
     print("File not found!")
-except PermissionError:
-    print("Permission denied!")
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-Else Clause:
-The else clause runs if no exceptions were raised.
-
-try:
-    x = 10 / 2
-except ZeroDivisionError:
-    print("Division by zero!")
-else:
-    print(f"Result: {x}")  # This runs
-
-Finally Clause:
-The finally clause always executes.
-
-try:
-    file = open("data.txt", "r")
-    content = file.read()
-except FileNotFoundError:
-    print("File not found")
-finally:
-    print("Execution complete")  # Always runs
 
 Raising Exceptions:
 You can raise exceptions with the raise keyword.
@@ -217,28 +150,19 @@ def validate_age(age):
 try:
     validate_age(-5)
 except ValueError as e:
-    print(f"Invalid age: {e}")
-
-Custom Exceptions:
-class NegativeNumberError(Exception):
-    pass
-
-def process_number(num):
-    if num < 0:
-        raise NegativeNumberError("Number must be positive")
-    return num * 2""",
+    print(f"Invalid age: {e}")""",
         metadata={"topic": "error_handling", "difficulty": "intermediate", "page": 4}
     ),
     Document(
         page_content="""Python Decorators
-A decorator is a design pattern in Python that allows a user to add new functionality to an existing object without modifying its structure. Decorators are usually called before the definition of a function you want to decorate.
+A decorator is a design pattern in Python that allows a user to add new functionality to an existing object without modifying its structure.
 
 Basic Decorator:
 def my_decorator(func):
     def wrapper():
-        print("Something is happening before the function is called.")
+        print("Before function call.")
         func()
-        print("Something is happening after the function is called.")
+        print("After function call.")
     return wrapper
 
 @my_decorator
@@ -246,10 +170,6 @@ def say_hello():
     print("Hello!")
 
 say_hello()
-# Output:
-# Something is happening before the function is called.
-# Hello!
-# Something is happening after the function is called.
 
 Decorators with Arguments:
 def repeat(times):
@@ -263,43 +183,11 @@ def repeat(times):
 
 @repeat(times=3)
 def greet(name):
-    print(f"Hello, {name}!")
-
-greet("Lukman")
-# Output (repeated 3 times):
-# Hello, Lukman!
-
-Class Decorators:
-You can also use classes as decorators.
-
-class CountCalls:
-    def __init__(self, func):
-        self.func = func
-        self.num_calls = 0
-    
-    def __call__(self, *args, **kwargs):
-        self.num_calls += 1
-        print(f"Call {self.num_calls} of {self.func.__name__}")
-        return self.func(*args, **kwargs)
-
-@CountCalls
-def say_hello():
-    print("Hello!")
-
-say_hello()  # Output: Call 1 of say_hello \n Hello!
-say_hello()  # Output: Call 2 of say_hello \n Hello!
-
-Built-in Decorators:
-@property - Makes a method behave like an attribute
-@classmethod - Defines a class method
-@staticmethod - Defines a static method""",
+    print(f"Hello, {name}!")""",
         metadata={"topic": "decorators", "difficulty": "advanced", "page": 5}
     )
 ]
 
-print(f"✅ Created {len(python_docs)} Python programming documents")
-
-# Section 4: Split into Chunks
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=800,
     chunk_overlap=100
@@ -307,16 +195,10 @@ text_splitter = RecursiveCharacterTextSplitter(
 
 doc_splits = text_splitter.split_documents(python_docs)
 
-print(f"✅ Created {len(doc_splits)} chunks")
-print(f"Sample chunk (first 200 chars):\\n{doc_splits[0].page_content[:200]}...")
-
-# Section 5: Create Vector Store
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
     api_key=openai_api_key
 )
-
-print("✅ Embeddings model initialized")
 
 chroma_path = "./chroma_db_python_agentic_rag"
 
@@ -328,36 +210,12 @@ vectorstore = Chroma(
 
 vectorstore.add_documents(documents=doc_splits)
 
-print(f"✅ Vector store created with {len(doc_splits)} chunks")
-print(f"Persisted to: {chroma_path}")
-
-# Test retrieval
-test_query = "How do I create a function in Python?"
-test_results = vectorstore.similarity_search(test_query, k=2)
-
-print(f"\\nTest retrieval query: {test_query}")
-print(f"Top result (first 150 chars):\\n{test_results[0].page_content[:150]}...")
-print("✅ Retrieval working!")
-
-# Section 6: Create Retrieval Tool
 @tool
 def retrieve_python_docs(query: str) -> str:
     """
     Search for relevant Python programming documentation.
-    
-    Use this tool when the user asks about Python programming concepts,
-    syntax, examples, or specific programming questions.
-    
-    Do NOT use this tool for:
-    - General conversation or greetings
-    - Questions not related to Python programming
-    - Simple math or calculations
-    
-    Args:
-        query: The search query about Python programming
-        
-    Returns:
-        Relevant Python documentation excerpts with metadata
+    Use this when user asks about Python concepts, syntax, or examples.
+    Do not use for greetings, general conversation, or non-Python questions.
     """
     retriever = vectorstore.as_retriever(
         search_type="mmr",
@@ -376,44 +234,30 @@ def retrieve_python_docs(query: str) -> str:
         page = doc.metadata.get("page", "unknown")
         
         formatted.append(
-            f"Document {i+1} (Topic: {topic}, Difficulty: {difficulty}, Page: {page}):\\n"
-            f"{doc.page_content}\\n"
+            f"Document {i+1} (Topic: {topic}, Difficulty: {difficulty}):\n"
+            f"{doc.page_content}\n"
         )
     
-    return "\\n---\\n".join(formatted)
+    return "\n---\n".join(formatted)
 
-print("✅ Retrieval tool created")
-
-# Test tool directly
-test_tool_result = retrieve_python_docs.invoke({"query": "What is a lambda function?"})
-print(f"\\nTool test (first 300 chars):\\n{test_tool_result[:300]}...")
-
-# Section 7: Build the Agentic RAG System
-system_prompt = SystemMessage(content="""You are a Python programming assistant with access to Python documentation.
-
-RETRIEVAL DECISION RULES:
+system_prompt = SystemMessage(content="""You are a Python programming assistant with Python documentation access.
 
 DO NOT retrieve for:
 - Greetings: "Hello", "Hi", "How are you"
-- General questions about your capabilities
+- General questions about capabilities
 - Non-Python programming questions
 - Simple math or calculations
-- Casual conversation: "Thank you", "Goodbye"
+- Casual conversation
 
 DO retrieve for:
 - Python programming questions: syntax, concepts, examples
 - Questions about Python functions, classes, lists, error handling, decorators
 - Requests for Python code examples
-- Any question about Python programming that would benefit from documentation
-
-Rule of thumb: If the user is asking about Python programming, retrieve documentation.
+- Any Python programming question
 
 When you retrieve documents, reference them in your answer. Include code examples when appropriate.
 """)
 
-print("✅ System prompt configured")
-
-# Bind tool to LLM
 tools = [retrieve_python_docs]
 llm_with_tools = llm.bind_tools(tools)
 
@@ -429,9 +273,6 @@ def should_continue(state: MessagesState) -> Literal["tools", "__end__"]:
         return "tools"
     return "__end__"
 
-print("✅ Agent nodes defined")
-
-# Build graph
 builder = StateGraph(MessagesState)
 
 builder.add_node("assistant", assistant)
@@ -448,137 +289,76 @@ builder.add_edge("tools", "assistant")
 memory = MemorySaver()
 agent = builder.compile(checkpointer=memory)
 
-print("✅ Agentic RAG system compiled")
+def real_time_conversation():
+    print("\n" + "="*70)
+    print("🤖 PYTHON PROGRAMMING ASSISTANT - Agentic RAG")
+    print("="*70)
+    print("Type 'exit' to end conversation")
+    print("Type 'new' to start new conversation")
+    print("="*70)
+    
+    thread_id = "python_001"
+    conversation_counter = 1
+    
+    while True:
+        user_input = input(f"\n[{thread_id}] You: ").strip()
+        
+        if user_input.lower() == 'exit':
+            print("\nGoodbye! 👋")
+            break
+        
+        if user_input.lower() == 'new':
+            conversation_counter += 1
+            thread_id = f"python_{conversation_counter:03d}"
+            print(f"\n🔄 New conversation: {thread_id}")
+            continue
+        
+        if not user_input:
+            print("Please enter a question.")
+            continue
+        
+        try:
+            print("\n" + "="*70)
+            print("🤖 Processing...")
+            print("="*70)
+            
+            result = agent.invoke(
+                {"messages": [HumanMessage(content=user_input)]},
+                config={"configurable": {"thread_id": thread_id}}
+            )
+            
+            last_message = result["messages"][-1]
+            
+            if isinstance(last_message, AIMessage):
+                if last_message.tool_calls:
+                    for message in result["messages"]:
+                        if isinstance(message, AIMessage) and message.tool_calls:
+                            tool_call = message.tool_calls[0]
+                            print(f"🤖 Agent: [Searching Python docs for: {tool_call['args']['query']}]")
+                        elif isinstance(message, ToolMessage):
+                            content = message.content
+                            if len(content) > 200:
+                                content = content[:200] + "..."
+                            print(f"📚 Retrieved: {content}")
+                        elif isinstance(message, AIMessage) and not message.tool_calls:
+                            print(f"🤖 Agent: {message.content}")
+                else:
+                    print(f"🤖 Agent: {last_message.content}")
+            
+            print("\n" + "="*70)
+            
+        except Exception as e:
+            print(f"\n❌ Error: {e}")
 
-# Section 8: Testing Function
-def test_query_agent(user_input: str, thread_id: str = "test_session"):
-    print(f"\\n{'='*70}")
-    print(f"👤 User: {user_input}")
-    print(f"{'='*70}\\n")
+if __name__ == "__main__":
+    print("🤖 Python Programming Assistant - Agentic RAG System")
+    print("Initializing...")
+    print(f"✅ Documents loaded: {len(doc_splits)} chunks")
+    print(f"✅ Tools: Python documentation retrieval")
     
-    result = agent.invoke(
-        {"messages": [HumanMessage(content=user_input)]},
-        config={"configurable": {"thread_id": thread_id}}
-    )
+    choice = input("\nStart conversation? (yes/no): ").strip().lower()
     
-    used_retrieval = False
-    final_answer = None
-    
-    for message in result["messages"]:
-        if isinstance(message, AIMessage):
-            if message.tool_calls:
-                used_retrieval = True
-                print(f"🔍 Agent: [Calling Python documentation retrieval...]")
-            if message.content and not message.tool_calls:
-                final_answer = message.content
-    
-    if final_answer:
-        print(f"🤖 Agent: {final_answer}")
+    if choice in ['yes', 'y', '']:
+        real_time_conversation()
     else:
-        print("⚠️ No response generated")
-    
-    print(f"\\n📊 Decision: {'RETRIEVED DOCUMENTATION' if used_retrieval else 'ANSWERED DIRECTLY'}")
-    print(f"{'='*70}")
-
-print("✅ Test function ready")
-
-# Section 9: Testing the System
-
-print("\\n" + "="*70)
-print("🧪 TESTING AGENTIC RAG SYSTEM - PYTHON PROGRAMMING DOMAIN")
-print("="*70)
-
-# Test 1: Query requiring retrieval
-test_query_agent("How do I create a decorator in Python?", thread_id="session_1")
-
-# Test 2: General knowledge (no retrieval)
-test_query_agent("Hello! What can you help me with?", thread_id="session_2")
-
-# Test 3: Python query requiring retrieval
-test_query_agent("Explain list comprehensions with examples", thread_id="session_3")
-
-# Test 4: Non-Python query (no retrieval)
-test_query_agent("What is 2+2?", thread_id="session_4")
-
-# Test 5: Advanced Python query
-test_query_agent("How do I handle multiple exceptions in Python?", thread_id="session_5")
-
-# Test 6: Follow-up with memory
-test_query_agent("Give me an example of custom exceptions", thread_id="session_5")
-
-# Test 7: Borderline case
-test_query_agent("What is Python?", thread_id="session_6")
-
-# Test 8: Complex multi-part query
-test_query_agent("Compare functions and methods in Python with examples", thread_id="session_7")
-
-print("\\n" + "="*70)
-print("📋 TESTING COMPLETE")
-print("="*70)
-
-# Section 10: Evaluation
-test_cases = [
-    ("How do I create a decorator in Python?", "Should retrieve"),
-    ("Hello! What can you help me with?", "Should not retrieve"),
-    ("Explain list comprehensions with examples", "Should retrieve"),
-    ("What is 2+2?", "Should not retrieve"),
-    ("How do I handle multiple exceptions in Python?", "Should retrieve"),
-    ("What is Python?", "Borderline - might retrieve"),
-    ("Compare functions and methods in Python", "Should retrieve"),
-    ("Tell me about inheritance in Python classes", "Should retrieve"),
-    ("Thank you for your help", "Should not retrieve"),
-    ("Can you write a function to calculate factorial?", "Should retrieve"),
-]
-
-print("\\n📊 EVALUATION SUMMARY")
-print("="*70)
-
-correct_decisions = 0
-total_cases = len(test_cases)
-
-for query, expected in test_cases:
-    result = agent.invoke(
-        {"messages": [HumanMessage(content=query)]},
-        config={"configurable": {"thread_id": f"eval_{hash(query)}"}}
-    )
-    
-    used_retrieval = any(
-        isinstance(msg, AIMessage) and msg.tool_calls 
-        for msg in result["messages"]
-    )
-    
-    decision = "RETRIEVED" if used_retrieval else "DIRECT"
-    expected_decision = "RETRIEVED" if "retrieve" in expected.lower() else "DIRECT"
-    
-    if decision == expected_decision:
-        correct_decisions += 1
-        symbol = "✅"
-    else:
-        symbol = "❌"
-    
-    print(f"{symbol} Query: {query[:40]}...")
-    print(f"   Expected: {expected_decision}, Got: {decision}")
-
-accuracy = (correct_decisions / total_cases) * 100
-print(f"\\n🎯 Accuracy: {accuracy:.1f}% ({correct_decisions}/{total_cases} correct decisions)")
-
-# Final report summary
-print("\\n" + "="*70)
-print("📝 BRIEF REPORT")
-print("="*70)
-print("""
-Domain: Python Programming
-Why chosen: Python is widely used, has clear documentation needs,
-            and allows testing both retrieval and direct answers.
-
-Chunk size: 800 characters with 100 overlap
-Why: Preserves context for programming examples while keeping
-     chunks manageable for retrieval.
-
-Agent performance: Good retrieval decisions for clear Python queries.
-What worked well: Agent correctly distinguishes Python programming
-                  questions from general conversation.
-
-Improvements needed: Borderline cases like "What is Python?" need
-                    better guidance in system prompt.
-""")
+        print("Goodbye! 👋")
