@@ -6,15 +6,15 @@ import BudgetSummary from './components/BudgetSummary'
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 print:bg-white">
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <Header />
       
-      <main className="container mx-auto px-4 lg:px-6 py-8 print:py-2">
+      <main className="container mx-auto px-4 lg:px-6 py-8">
         {/* Space before dashboard */}
-        <div className="mb-8 print:hidden">
+        <div className="mb-8">
           <div className="max-w-6xl mx-auto">
             {/* Welcome Card with proper spacing */}
-            <div className="bg-white rounded-xl shadow-lg p-6 lg:p-8">
+            <div className="bg-white rounded-xl shadow-lg p-6 lg:p-8 mt-5">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between">
                 <div className="mb-4 lg:mb-0 lg:mr-8">
                   <h2 className="text-xl lg:text-2xl font-semibold text-gray-800 flex items-center mb-2">
@@ -50,7 +50,7 @@ function App() {
           {/* Expense List (Full Width) */}
           <ExpenseList />
           
-          <footer className="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm print:hidden">
+          <footer className="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
             <p className="flex items-center justify-center mb-2">
               <FaWallet className="mr-2" />
               <strong>Tip:</strong> Your expenses are automatically saved to your browser's localStorage.

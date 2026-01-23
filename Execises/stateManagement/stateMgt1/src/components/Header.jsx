@@ -19,7 +19,7 @@ const Header = () => {
   return (
     <>
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-200">
+      <header className="sticky top-0 z-40 bg-white shadow-lg border-b border-gray-200">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="flex items-center justify-between py-4">
             {/* Logo/Brand */}
